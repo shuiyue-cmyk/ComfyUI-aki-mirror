@@ -16,11 +16,11 @@
 ## 镜像版本
 
 - 版本：`v3.2`（顶层目录 `ComfyUI-aki-v3.2`）
-- 原包文件名：`ComfyUI-aki-v3.2.7z`
-- 原包体积：2,996,610,271 字节（约 2858 MiB）
+- 镜像包文件名：`ComfyUI-aki-v3.2.7z`（**系镜像发布者重新压缩，非原作者原始分发文件**；内容与原包解压后一致，未增删文件）
+- 镜像包体积：2,996,610,271 字节（约 2858 MiB）
 - 解包后：77,790 个文件 / 11,443 个文件夹，约 6,642,372,969 字节（约 6.19 GiB）
 - 压缩格式：7z，Solid，`Delta ARM64 LZMA2:28 LZMA:20 BCJ2`，9 Blocks
-- 是否加密：经 `7z l` 测试，**列表无需密码即可读取**（v3.2 包本身未加密；若解压时个别版本索要密码，请先试原作者常用密码 `bilibili-秋葉aaaki`，并以原作者动态为准）
+- 解压密码：**无，实测 `7z x` 直接解压通过**（原作者新版包默认密码 `bilibili-秋葉aaaki` 在此不适用）
 - 包内容（解压后顶层）：
   - `绘世启动器.exe`（约 2MB，启动入口）
   - `ComfyUI/`（约 222MB，ComfyUI 本体 + 预装节点）
@@ -32,12 +32,12 @@
 
 ## 下载与校验（v3.2）
 
-GitHub 单个 Release 文件上限 2GB，而原包约 2.8GB，所以本仓把原包**原样切分**成 2 个分卷传到 Release：
+GitHub 单个 Release 文件上限 2GB，而镜像包约 2.8GB，所以本仓把镜像包**原样切分**成 2 个分卷传到 Release：
 
 - `ComfyUI-aki-v3.2.7z.part001`（1,992,294,400 字节 = 1900 MiB）
 - `ComfyUI-aki-v3.2.7z.part002`（余下约 1,003,815,871 字节）
 
-切分是纯二进制切割，**没有重新压缩**，合并后即得与原包逐字节一致的 `ComfyUI-aki-v3.2.7z`。
+切分是纯二进制切割（上传前切分时没有再压缩），合并后即得与本镜像重压包逐字节一致的 `ComfyUI-aki-v3.2.7z`。
 
 步骤（Windows）：
 
@@ -45,7 +45,7 @@ GitHub 单个 Release 文件上限 2GB，而原包约 2.8GB，所以本仓把原
 2. 双击运行本仓 `tools/merge.bat`（自动按顺序合并 + 自动 SHA256 校验）；
    或手动执行：`copy /B ComfyUI-aki-v3.2.7z.part001+ComfyUI-aki-v3.2.7z.part002 ComfyUI-aki-v3.2.7z`
 3. 校验哈希（merge.bat 已自动做；手动命令）：`certutil -hashfile ComfyUI-aki-v3.2.7z SHA256`
-4. 用 [7-Zip](https://www.7-zip.org/) 解压，运行 `绘世启动器.exe`。
+4. 用 [7-Zip](https://www.7-zip.org/) 解压（**无需密码**），运行 `绘世启动器.exe`。
 
 步骤（Linux / macOS，仅合并校验；ComfyUI-aki 本体是 Windows 环境）：
 
@@ -56,7 +56,7 @@ sha256sum -c SHA256SUMS.txt
 
 ## 哈希
 
-`SHA256SUMS.txt`（合并后的原包）：
+`SHA256SUMS.txt`（合并后的镜像重压包）：
 
 ```
 F53864B14A28044ACCF7F94D57C84652103D2D6966F5496F281FCF30596A689D *ComfyUI-aki-v3.2.7z
@@ -64,13 +64,13 @@ F53864B14A28044ACCF7F94D57C84652103D2D6966F5496F281FCF30596A689D *ComfyUI-aki-v3
 
 MD5（备用）：`4F49D429155F775A56C0E35B221D2467`
 
-> 分卷各自的哈希见 Release 页面 `SHA256SUMS.parts.txt`（T2 切分后补充）。
+> 分卷各自的哈希见 Release 页面 `SHA256SUMS.parts.txt`。
 
 ## 目录说明
 
 - `tools/merge.bat`：Windows 一键合并 + 校验
 - `tools/merge.sh`：Linux/macOS 合并 + 校验
-- `SHA256SUMS.txt`：合并后原包哈希
+- `SHA256SUMS.txt`：合并后镜像重压包哈希
 - 本仓 **不直接存放** 3GB 大包（git 只存说明与脚本，大文件走 Release，避免把仓库撑爆）
 
 ## 常见问题
@@ -83,8 +83,8 @@ MD5（备用）：`4F49D429155F775A56C0E35B221D2467`
 
 ## 合规与致谢
 
-1. 本仓为**公益镜像**，仅解决“网盘限速”问题，不做任何修改与二次打包；
-2. 署名与原文（用户协议 / bilibili@秋葉aaaki.txt）均保留，原包逐字节一致；
+1. 本仓为**公益镜像**，仅解决“网盘限速”问题；内容与原包解压后一致，仅由镜像发布者重新压缩为无密码 7z，未增删文件；
+2. 署名与原文（用户协议 / bilibili@秋葉aaaki.txt）均保留，合并后与本镜像重压包逐字节一致；
 3. **严禁倒卖**，违者请向原作者举报；
 4. 若原作者或版权方要求下架，本仓将在第一时间删除 Release 文件与相关说明；
 5. 感谢秋葉aaaki 长期维护免费整合包与绘世启动器，以及 ComfyUI 开源社区。
