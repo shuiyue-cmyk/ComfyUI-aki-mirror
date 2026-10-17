@@ -66,11 +66,26 @@ MD5（备用）：`4F49D429155F775A56C0E35B221D2467`
 
 > 分卷各自的哈希见 Release 页面 `SHA256SUMS.parts.txt`。
 
+## Intel 显卡优化版（ComfyUI-intel-aki v1.1）
+
+原作者另发布了针对 Intel 显卡优化的整合包，同样做了公益镜像（独立 Release，tag `intel-v1.1`）：
+
+- 镜像包文件名：`ComfyUI-intel-aki-v1.1.7z`（顶层目录 `ComfyUI-intel-aki-v1.1`）
+- 体积：1,769,055,483 字节（约 1688 MiB），低于 GitHub 单文件 2GB 上限，**无需分卷、无需合并**
+- 压缩格式：7z，Solid，`Delta LZMA2:27 LZMA:20 BCJ2`
+- 解压密码：**无**（包内条目均未加密）
+- 下载：本仓右侧 **Releases → `intel-v1.1`**，下载后直接校验、用 7-Zip 解压，运行 `绘世启动器.exe`
+- 校验：`certutil -hashfile ComfyUI-intel-aki-v1.1.7z SHA256`，应为：
+
+```
+69E381920A5F6049575E4F669EC25BF86FFFF02AB0D012767A4C2D9FF3C2DD65 *ComfyUI-intel-aki-v1.1.7z
+```
+
 ## 目录说明
 
-- `tools/merge.bat`：Windows 一键合并 + 校验
-- `tools/merge.sh`：Linux/macOS 合并 + 校验
-- `SHA256SUMS.txt`：合并后镜像重压包哈希
+- `tools/merge.bat`：Windows 一键合并 + 校验（仅 v3.2 分卷需要）
+- `tools/merge.sh`：Linux/macOS 合并 + 校验（仅 v3.2 分卷需要）
+- `SHA256SUMS.txt`：各镜像包（v3.2 为合并后的重压包）哈希
 - 本仓 **不直接存放** 3GB 大包（git 只存说明与脚本，大文件走 Release，避免把仓库撑爆）
 
 ## 常见问题
@@ -91,4 +106,4 @@ MD5（备用）：`4F49D429155F775A56C0E35B221D2467`
 
 ---
 
-Release 命名：`v3.2`，标题 `ComfyUI-aki v3.2 公益镜像`。后续新版本按 `vX.Y` 追加，不覆盖旧版。
+Release 命名：`v3.2`，标题 `ComfyUI-aki v3.2 公益镜像`；Intel 版为 `intel-v1.1`，标题 `ComfyUI-intel-aki v1.1 公益镜像`。后续新版本按 `vX.Y` / `intel-vX.Y` 追加，不覆盖旧版。
